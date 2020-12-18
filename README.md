@@ -8,8 +8,6 @@ Don't use this it's repo still under development
 its unstable repo fork on ur own risks
 
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/hyper-ub/saberrobot-1)
-
 
 A modular telegram Python bot running on python3 with an sqlalchemy database.
 
