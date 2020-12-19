@@ -484,6 +484,43 @@ def set_warn_limit(update, context) -> str:
 
         msg.reply_text("The current warn limit is {}".format(limit))
     return ""
+@run_async
+@user_admin
+@can_restrict
+@loggable
+@typing_action
+def delwarn_user(update, context):
+    if update.effective_message.reply_to_message:
+       message = update.effective_message  # type: Optional[Message]
+       chat = update.effective_chat  # type: Optional[Chat]
+       warner = update.effective_user  # type: Optional[User]
+       args = context.args
+       user_id, reason = extract_user_and_text(message, args)
+
+    if user_id:
+        if (
+            message.reply_to_message
+            and message.reply_to_message.from_user.id == user_id
+        ):
+
+        if can_delete(chat, bot.id):
+
+            update.effective_message.reply_to_message.delete()
+            update.effective_message.delete()
+        
+            return warn(
+                message.reply_to_message.from_user,
+                chat,
+                reason,
+                message.reply_to_message,
+                warner,
+            )
+        else:
+            return warn(chat.get_member(user_id).user, chat, reason, message, warner)
+    else:
+        message.reply_text("No user was designated!")
+    return ""
+
 
 
 @run_async
@@ -538,9 +575,9 @@ def set_warn_strength(update, context):
 
 def __stats__():
     return (
-        "┣⊸ Overall Warns - {} ( {} )\n┋\n"
-        "┣⊸ Warn Filters - {} ( {} )"
-       f'\n┇ \n┖──⌊ <a href="https://t.me/{SUPPORT_CHAT}">Support Chat</a> ⌉ '.format(
+        " Overall Warns - {} ( {} )\n┋\n"
+        " Warn Filters - {} ( {} )"
+       f'\n┖──⌊ <a href="https://t.me/{SUPPORT_CHAT}">Support Chat</a> ⌉ '.format(
             sql.num_warns(),
             sql.num_warn_chats(),
             sql.num_warn_filters(),
