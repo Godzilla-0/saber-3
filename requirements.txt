@@ -9,6 +9,8 @@ lxml
 beautifulsoup4
 requests
 better_profanity
+dnspython==2.0.0
+gitpython==3.1.11
 
 pymongo[srv]
 
