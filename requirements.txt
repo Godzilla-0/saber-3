@@ -7,7 +7,9 @@ pybase64
 html2text
 lxml
 beautifulsoup4
-requests
+request
+better_profanity
+
 pySmartDL
 sqlalchemy
 pyrogram>=1.0.7
