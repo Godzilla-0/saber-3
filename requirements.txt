@@ -13,6 +13,7 @@ dnspython==2.0.0
 gitpython==3.1.11
 
 pymongo[srv]
+textblob
 
 pySmartDL
 sqlalchemy
