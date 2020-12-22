@@ -7,7 +7,7 @@ pybase64
 html2text
 lxml
 beautifulsoup4
-request
+requests
 better_profanity
 
 pySmartDL
