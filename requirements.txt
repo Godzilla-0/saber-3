@@ -9,7 +9,8 @@ lxml
 beautifulsoup4
 requests
 better_profanity
-textblob
+
+pymongo[srv]
 
 pySmartDL
 sqlalchemy
