@@ -9,6 +9,7 @@ lxml
 beautifulsoup4
 requests
 better_profanity
+textblob
 
 pySmartDL
 sqlalchemy
