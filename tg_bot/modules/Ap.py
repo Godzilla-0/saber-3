@@ -12,6 +12,13 @@ from tg_bot import *
 import better_profanity
 from better_profanity import profanity
 from textblob import TextBlob
+from tg_bot import client, SUDO_USERS
+import time
+import asyncio
+from telethon import events
+from telethon.tl.types import ChannelParticipantsAdmins
+from telethon.errors.rpcerrorlist import MessageDeleteForbiddenError
+
 
 client = MongoClient()
 client = MongoClient(MONGO_DB_URI)
