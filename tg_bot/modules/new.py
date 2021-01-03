@@ -1,11 +1,11 @@
-from julia import CMD_HELP
+from tg_bot import CMD_HELP
 import nude
 import html
 import asyncio
-from julia.modules.sql import cleaner_sql as sql
+from tg_bot.modules.sql import cleaner_sql as sql
 from pymongo import MongoClient
-from julia import MONGO_DB_URI
-from julia.events import register
+from tg_bot import MONGO_DB_URI
+from tg_bot.events import register
 from telethon import types, events
 from telethon.tl import *
 from telethon.tl.types import *
@@ -42,13 +42,13 @@ async def is_register_admin(chat, user):
 
         return isinstance(
             (
-                await tbot(functions.channels.GetParticipantRequest(chat, user))
+                await client(functions.channels.GetParticipantRequest(chat, user))
             ).participant,
             (types.ChannelParticipantAdmin, types.ChannelParticipantCreator),
         )
     if isinstance(chat, types.InputPeerChat):
 
-        ui = await tbot.get_peer_id(user)
+        ui = await client.get_peer_id(user)
         ps = (
             await tbot(functions.messages.GetFullChatRequest(chat.chat_id))
         ).full_chat.participants.participants
@@ -356,7 +356,7 @@ async def cleanservice(event):
         await event.reply("I only understand by on or off")
         return
 
-@tbot.on(events.NewMessage(pattern=None))
+@client.on(events.NewMessage(pattern=None))
 async def del_profanity(event):
     if event.is_private:
         return
@@ -400,7 +400,7 @@ async def del_profanity(event):
                     await dev.delete()
                     os.remove("nudes.jpg")
 
-@tbot.on(events.NewMessage(pattern=None))
+@client.on(events.NewMessage(pattern=None))
 async def del_profanity(event):
     if event.is_private:
         return
@@ -432,7 +432,7 @@ async def del_profanity(event):
                     await dev.delete()
 
 
-@tbot.on(events.ChatAction())
+@client.on(events.ChatAction())
 async def del_cleanservice(event):
     chats = cleanservices.find({})
     for c in chats:
@@ -456,9 +456,3 @@ __help__ = """
  - /globalmode: let users only speak in english in your group (automatically deletes messages in other languages)
 """
 
-CMD_HELP.update({
-    file_helpo: [
-        file_helpo,
-        __help__
-    ]
-})
