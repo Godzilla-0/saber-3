@@ -10,7 +10,7 @@ import asyncio
 from tg_bot.modules.sql import cleaner_sql as sql
 from pymongo import MongoClient
 from tg_bot import MONGO_DB_URI
-from tg_bot.events import register
+from tg_bot.saber import register
 from telethon import types, events
 from telethon.tl import *
 from telethon.tl.types import *
@@ -183,7 +183,7 @@ async def _(event):
     return
 
 
-@Client.on(events.NewMessage(pattern=None))
+@client.on(events.NewMessage(pattern=None))
 async def _(event):
     if event.is_group:
         if (await is_register_admin(event.input_chat, event.message.sender_id)):
