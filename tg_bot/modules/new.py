@@ -1,4 +1,4 @@
-from tg_bot import CMD_HELP
+
 import nude
 import html
 import asyncio
@@ -26,7 +26,7 @@ CMD_STARTERS = '/'
 profanity.load_censor_words_from_file('./profanity_wordlist.txt')
 
 async def can_change_info(message):
-    result = await tbot(
+    result = await client (
         functions.channels.GetParticipantRequest(
             channel=message.chat_id,
             user_id=message.sender_id,
