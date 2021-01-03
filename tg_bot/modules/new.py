@@ -9,14 +9,14 @@ from julia.events import register
 from telethon import types, events
 from telethon.tl import *
 from telethon.tl.types import *
-from julia import *
+from tg_bot import *
 import better_profanity
 from better_profanity import profanity
 from textblob import TextBlob
 
 client = MongoClient()
 client = MongoClient(MONGO_DB_URI)
-db = client["missjuliarobot"]
+db = client["saber"]
 approved_users = db.approve
 spammers = db.spammer
 cleanservices = db.cleanservice
