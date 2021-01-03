@@ -1,4 +1,9 @@
-
+from tg_bot import client, SUDO_USERS
+import time
+import asyncio
+from telethon import events
+from telethon.tl.types import ChannelParticipantsAdmins
+from telethon.errors.rpcerrorlist import MessageDeleteForbiddenError
 import nude
 import html
 import asyncio
