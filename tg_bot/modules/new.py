@@ -17,7 +17,6 @@ from textblob import TextBlob
 client = MongoClient()
 client = MongoClient(MONGO_DB_URI)
 db = client["saber"]
-approved_users = db.approve
 spammers = db.spammer
 cleanservices = db.cleanservice
 globalchat = db.globchat
@@ -147,7 +146,6 @@ async def _(event):
 
 @register(pattern="^/listcleanbluetext$")
 async def _(event):
-
     if event.is_group:
         if not await can_change_info(message=event):
             return
@@ -180,12 +178,8 @@ async def _(event):
     return
 
 
-@tbot.on(events.NewMessage(pattern=None))
+@client.on(events.NewMessage(pattern=None))
 async def _(event):
-    approved_userss = approved_users.find({})
-    for ch in approved_userss:
-        iid = ch['id']
-        userss = ch['user']
     if event.is_group:
         if (await is_register_admin(event.input_chat, event.message.sender_id)):
             return
