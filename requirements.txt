@@ -19,7 +19,6 @@ python-telegram-bot==12.8
 psycopg2-binary
 spongemock
 nudepy==0.5.1
-pymongo
 bing_image_downloader
 zalgo-text
 geopy
